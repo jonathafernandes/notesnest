@@ -1,5 +1,8 @@
 import logo from './assets/logoipsum-225.svg';
-import NoteCard from './components/NoteCard';
+
+import { NewNoteCard } from './components/NewNoteCard';
+import { NoteCard } from './components/NoteCard';
+import { Toaster } from 'sonner';
 
 export default function App() {
   return (
@@ -17,15 +20,17 @@ export default function App() {
       </form>
       <div className='h-px bg-slate-700' />
       <div className='grid grid-cols-3 gap-6 auto-rows-[250px]'>
-        <div className='rounded-md bg-slate-700 p-5 space-y-3'>
-          <span className='text-sm font-medium text-slate-200'>Adicionar nota</span>
-          <p className='text-sm leading-6 text-slate-400'>Grave uma nota em áudio que será convertida para texto automaticamente.</p>
-        </div>
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
+        <NewNoteCard />
+        <NoteCard
+          note={
+            {
+              date: new Date(),
+              content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            }
+          }
+        />
       </div>
+      <Toaster richColors />
     </div>
   )
 }
