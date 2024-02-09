@@ -63,7 +63,7 @@ export default function App() {
     <div className='mx-auto max-w-6xl my-12 space-y-6 px-5'>
       <div className='flex gap-1'>
         <img className='w-6' src={logo} alt="" />
-        <span className='text-xl font-semibold'>Expert Notes</span>
+        <span className='text-xl font-semibold'>Notes Nest</span>
       </div>
       <form className='w-full'>
         <input
