@@ -73,7 +73,8 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
 
         speechRecognition.onerror = function(event) {
             console.error(event.error);
-        }
+            console.log('Erro de gravação:', event.error);
+        }        
 
         speechRecognition.start();
     }
@@ -81,6 +82,8 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
     function handleStopRecording() {
         if (speechRecognition !== null) {
             speechRecognition.stop();
+            setIsRecording(false);
+            setShouldShowsOnboarding(true);
         }
     }
 
@@ -118,11 +121,12 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
                             {isRecording ? (
                                 <button
                                     className='flex items-center justify-center gap-2 rounded-b-md w-full p-3 bg-slate-900 text-sm font-medium text-slate-300'
-                                type='button'
+                                    type='button'
+                                    onClick={handleStopRecording}
                                 >
                                 <div className='size-3 rounded-full bg-red-500 animate-pulse' />
                                 Gravando...
-                                <button onClick={handleStopRecording} type='button' className='ml-3 rounded-sm p-1 bg-slate-700 text-xs text-slate-400  hover:text-slate-300'>Clique para interromper</button>
+                                <span className='ml-3 rounded-sm p-1 bg-slate-700 text-xs text-slate-400  hover:text-slate-300'>Clique para interromper</span>
                             </button>
                             ) : (
                             <button
