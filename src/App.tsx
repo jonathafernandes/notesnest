@@ -4,7 +4,7 @@ import logo from './assets/logoipsum-225.svg';
 
 import { NewNoteCard } from './components/NewNoteCard';
 import { NoteCard } from './components/NoteCard';
-import { Toaster } from 'sonner';
+import { Toaster, toast } from 'sonner';
 
 interface Note {
   id: string
@@ -38,6 +38,17 @@ export default function App() {
     localStorage.setItem('notes', JSON.stringify(notesArray))
   }
 
+  function onNoteDeleted(id: string) {
+    const notesArray = notes.filter((note) => {
+      return note.id !== id
+    });
+
+    setNotes(notesArray)
+    localStorage.setItem('notes', JSON.stringify(notesArray))
+
+    toast.success('Nota apagada com sucesso!')
+  }
+
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     const query = event.target.value;
 
@@ -49,7 +60,7 @@ export default function App() {
     }) : notes;
     
   return (
-    <div className='mx-auto max-w-6xl my-12 space-y-6'>
+    <div className='mx-auto max-w-6xl my-12 space-y-6 px-5'>
       <div className='flex gap-1'>
         <img className='w-6' src={logo} alt="" />
         <span className='text-xl font-semibold'>Expert Notes</span>
@@ -63,12 +74,12 @@ export default function App() {
         />
       </form>
       <div className='h-px bg-slate-700' />
-      <div className='grid grid-cols-3 gap-6 auto-rows-[250px]'>
+      <div className='grid grid-1 md:grid-2 lg:grid-cols-3 gap-6 auto-rows-[250px]'>
         <NewNoteCard onNoteCreated={onNoteCreated} />
 
         {filteredNotes.map((note) => {
           return (
-            <NoteCard key={note.id} note={note} />
+            <NoteCard key={note.id} note={note} onNoteDeleted={onNoteDeleted} />
           )
         })}
       </div>
