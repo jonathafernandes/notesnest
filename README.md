@@ -4,7 +4,7 @@ React + TypeScript + Vite + Tailwind
 Aplicação para criação de notas.
 Feito com _React, TypeScript, Tailwind, Vite_ e utilizada a _API SpeechRecognition_ para fazer **transcrição de áudio para texto**.
 
-<img src='./public/layout.png' width="80%" />
+<img src='./public/layout.png' width="100%" />
 
 ---
 <br />
