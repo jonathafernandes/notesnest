@@ -96,7 +96,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
 
     return (
         <Dialog.Root>
-        <Dialog.Trigger className='rounded-md flex flex-col bg-slate-700 p-5 gap-3 outline-none hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 text-left'>
+        <Dialog.Trigger className='rounded-md flex flex-col bg-slate-600 p-5 gap-3 outline-none hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-yellow-400 text-left'>
             <span className='text-sm font-medium text-slate-200'>Adicionar nota</span>
             <p className='text-sm leading-6 text-slate-400'>Grave uma nota em áudio que será convertida para texto automaticamente.</p>
         </Dialog.Trigger>
@@ -149,7 +149,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
                             </div>
                                 {shouldShowsOnboarding ? (
                                     <p className='text-sm leading-6 text-slate-400'>
-                                        Comece a <button type='button' onClick={handleOnRecording} className='font-medium text-lime-400 hover:underline'>gravar uma nota em áudio</button> ou se preferir, você pode <button type='button' onClick={handleStartEditor} className='font-medium text-lime-400 hover:underline'>utilizar apenas texto</button>.
+                                        Comece a <button type='button' onClick={handleOnRecording} className='font-medium text-yellow-400 hover:underline'>gravar uma nota em áudio</button> ou se preferir, você pode <button type='button' onClick={handleStartEditor} className='font-medium text-yellow-400 hover:underline'>utilizar apenas texto</button>.
                                     </p>
                                 ) : (
                                     <textarea
@@ -172,7 +172,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
                             </button>
                             ) : (
                             <button
-                                className='rounded-b-md w-full p-3 bg-lime-400 text-sm font-medium text-lime-950 hover:bg-lime-500'
+                                className='rounded-b-md w-full p-3 bg-yellow-400 text-sm font-medium text-yellow-950 hover:bg-yellow-500'
                                 onClick={handleSaveNote}
                                 type='button'
                             >
