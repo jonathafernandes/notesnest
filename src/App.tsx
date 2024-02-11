@@ -7,9 +7,10 @@ import { NoteCard } from './components/NoteCard';
 import { Toaster, toast } from 'sonner';
 
 interface Note {
-  id: string
-  date: Date
-  content: string
+  id: string;
+  date: Date;
+  content: string;
+  category: string[];
 }
 
 export default function App() {
@@ -25,11 +26,12 @@ export default function App() {
     return [];
   })
 
-  function onNoteCreated(content: string) {
+  function onNoteCreated(content: string, categories: string[]) {
     const newNote = {
       id: crypto.randomUUID(),
       date: new Date(),
-      content
+      content,
+      category: categories
     }
 
     const notesArray = [newNote, ...notes]
@@ -75,7 +77,7 @@ export default function App() {
       </form>
       <div className='h-px bg-slate-700' />
       <div className='grid grid-1 md:grid-2 lg:grid-cols-3 gap-6 auto-rows-[250px]'>
-        <NewNoteCard onNoteCreated={onNoteCreated} />
+      <NewNoteCard onNoteCreated={(content, category) => onNoteCreated(content, category)} />
 
         {filteredNotes.map((note) => {
           return (
