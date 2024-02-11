@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 interface NewNoteCardProps {
-    onNoteCreated: (content: string) => void;
+    onNoteCreated: (content: string, categories: string[]) => void;
 }
 
 let speechRecognition: SpeechRecognition | null = null;  
@@ -13,6 +13,7 @@ let speechRecognition: SpeechRecognition | null = null;
 export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
     const [shouldShowsOnboarding, setShouldShowsOnboarding] = useState(true);
     const [content, setContent] = useState('');
+    const [categories, setCategories] = useState<string[]>([]);
     const [isRecording, setIsRecording] = useState(false);
 
     function handleStartEditor() {
@@ -35,12 +36,18 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
             return;
         }
         
-        onNoteCreated(content);
+        onNoteCreated(content, categories);
         
         toast.success('Nota salva com sucesso!');
 
         setContent('');
+        setCategories([]);
         setShouldShowsOnboarding(true);
+    }
+
+    function toggleCategory(category: string) {
+        const isSelected = categories.includes(category);
+        setCategories(isSelected ? categories.filter(cat => cat !== category) : [...categories, category]);
     }
 
     function handleOnRecording() {
@@ -89,22 +96,51 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
 
     return (
         <Dialog.Root>
-            <Dialog.Trigger className='rounded-md flex flex-col bg-slate-700 p-5 gap-3 outline-none hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 text-left'>
-                <span className='text-sm font-medium text-slate-200'>Adicionar nota</span>
-                <p className='text-sm leading-6 text-slate-400'>Grave uma nota em áudio que será convertida para texto automaticamente.</p>
-            </Dialog.Trigger>
+        <Dialog.Trigger className='rounded-md flex flex-col bg-slate-700 p-5 gap-3 outline-none hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 text-left'>
+            <span className='text-sm font-medium text-slate-200'>Adicionar nota</span>
+            <p className='text-sm leading-6 text-slate-400'>Grave uma nota em áudio que será convertida para texto automaticamente.</p>
+        </Dialog.Trigger>
 
-            <Dialog.Portal>
-                <Dialog.Overlay className='inset-0 fixed bg-black/50'>
-                    <Dialog.Content className='fixed overflow-hidden inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] w-full md:h-[60vh] bg-slate-700 md:rounded-md flex flex-col outiline-none'>
-                        <Dialog.Close className='absolute top-0 right-0 p-1.5 bg-slate-800 text-slate-400 hover:text-slate-100'>
-                            <X className='size-5' />
-                        </Dialog.Close>
-                        <form className='flex-1 flex flex-col'>
-                            <div className='flex flex-1 flex-col gap-3 p-5'>
-                                <span className='text-sm font-medium text-slate-300'>
-                                    Adiconar nota
+        <Dialog.Portal>
+            <Dialog.Overlay className='inset-0 fixed bg-black/50'>
+                <Dialog.Content className='fixed overflow-hidden inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] w-full md:h-[60vh] bg-slate-700 md:rounded-md flex flex-col outiline-none'>
+                    <Dialog.Close className='absolute top-0 right-0 p-1.5 bg-slate-800 text-slate-400 hover:text-slate-100'>
+                        <X className='size-5' />
+                    </Dialog.Close>
+                    <form className='flex-1 flex flex-col'>
+                        <div className='flex flex-1 flex-col gap-3 p-5'>
+                            <span className='text-sm font-medium text-slate-300'>
+                                Adiconar nota
+                            </span>
+                            <div className="flex flex-col gap-1">
+                                <span className='text-sm text-slate-400'>
+                                    Escolha as categorias:
                                 </span>
+                                <div>
+                                    <label>
+                                        <input className='mr-1' type="checkbox" onChange={() => toggleCategory('#anotações-rápidas')} checked={categories.includes('#anotações-rápidas')} />
+                                        <span className='text-sm text-slate-200'>
+                                            anotações-rápidas
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        <input className='mr-1' type="checkbox" onChange={() => toggleCategory('#to-do')} checked={categories.includes('#to-do')} />
+                                        <span className='text-sm text-slate-200'>
+                                            to-do
+                                        </span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        <input className='mr-1' type="checkbox" onChange={() => toggleCategory('#lembrar')} checked={categories.includes('#lembrar')} />
+                                        <span className='text-sm text-slate-200'>
+                                            lembrar
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
                                 {shouldShowsOnboarding ? (
                                     <p className='text-sm leading-6 text-slate-400'>
                                         Comece a <button type='button' onClick={handleOnRecording} className='font-medium text-lime-400 hover:underline'>gravar uma nota em áudio</button> ou se preferir, você pode <button type='button' onClick={handleStartEditor} className='font-medium text-lime-400 hover:underline'>utilizar apenas texto</button>.
