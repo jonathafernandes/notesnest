@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { X } from 'lucide-react'
+import { Pencil, X } from 'lucide-react'
 
 interface NoteCardProps {
     note: {
@@ -29,10 +29,13 @@ export function NoteCard({ note, onNoteDeleted }: NoteCardProps) {
             <Dialog.Portal>
                 <Dialog.Overlay className='inset-0 fixed bg-black/50'>
                     <Dialog.Content className='fixed overflow-hidden inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] w-full md:h-[60vh] bg-slate-700 md:rounded-md flex flex-col outiline-none'>
+                        <button className='absolute top-0 left-0 p-1.5 bg-slate-800 text-slate-400 hover:text-slate-100'>
+                            <Pencil className='size-5' />
+                        </button>
                         <Dialog.Close className='absolute top-0 right-0 p-1.5 bg-slate-800 text-slate-400 hover:text-slate-100'>
                             <X className='size-5' />
                         </Dialog.Close>
-                        <div className='flex flex-1 flex-col gap-3 p-5'>
+                        <div className='flex flex-1 flex-col gap-3 p-5 mt-7'>
                             <span className='text-sm font-medium text-slate-300'>{formatDistanceToNow(note.date, { locale: ptBR, addSuffix: true })}</span>
                             <span className='text-sm font-medium text-yellow-400'>{note.category.join(' ')}</span>
                             <p className='text-sm leading-6 text-slate-400'>
