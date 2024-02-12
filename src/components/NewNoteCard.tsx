@@ -110,9 +110,9 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
             <Dialog.Overlay className='inset-0 fixed bg-black/50'>
                 <Dialog.Content className='fixed overflow-hidden inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] w-full md:h-[60vh] bg-slate-700 md:rounded-md flex flex-col outiline-none'>
                     {!shouldShowsOnboarding ? (
-                        <div className='absolute top-0 right-0 p-1.5 bg-slate-800 text-slate-400 hover:text-slate-100 cursor-pointer'>
-                            <ChevronLeft className='size-5' onClick={handleStopEditor} />
-                        </div>
+                        <button onClick={handleStopEditor} className='absolute top-0 right-0 p-1.5 bg-slate-800 text-slate-400 hover:text-slate-100 cursor-pointer'>
+                            <ChevronLeft className='size-5' />
+                        </button>
                     ) : (
                         <Dialog.Close className='absolute top-0 right-0 p-1.5 bg-slate-800 text-slate-400 hover:text-slate-100'>
                             <X className='size-5' />
