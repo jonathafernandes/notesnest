@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NewNoteCard } from './components/NewNoteCard';
 import { NoteCard } from './components/NoteCard';
 import { Toaster, toast } from 'sonner';
+import { CategoryButton } from './components/CategoryButton';
+
 import logo from './assets/logoipsum-225.svg';
 
 interface Note {
@@ -55,10 +57,6 @@ export default function App() {
     setSearch(query);
   }
 
-  function handleCategoryFilter(category: string) {
-    setCategoryFilter(category);
-  }
-
   const filteredNotes = search !== '' ? notes.filter((note) => {
     return note.content.toLowerCase().includes(search.toLowerCase())
   }) : notes;
@@ -81,12 +79,12 @@ export default function App() {
       </form>
       <div className='h-px bg-slate-700' />
       <div className='flex gap-4 flex-wrap'>
-        <button onClick={() => setCategoryFilter('')} className={`text-xm font-semibold ${categoryFilter === '' ? 'text-yellow-400' : 'text-slate-500'}`}>todas</button>
-        <button onClick={() => handleCategoryFilter('#trabalho')} className={`text-xm font-semibold ${categoryFilter === '#trabalho' ? 'text-yellow-400' : 'text-slate-500'}`}>trabalho</button>
-        <button onClick={() => handleCategoryFilter('#estudos')} className={`text-xm font-semibold ${categoryFilter === '#estudos' ? 'text-yellow-400' : 'text-slate-500'}`}>estudos</button>
-        <button onClick={() => handleCategoryFilter('#anotações-rápidas')} className={`text-xm font-semibold ${categoryFilter === '#anotações-rápidas' ? 'text-yellow-400' : 'text-slate-500'}`}>anotações-rápidas</button>
-        <button onClick={() => handleCategoryFilter('#lembrar')} className={`text-xm font-semibold ${categoryFilter === '#lembrar' ? 'text-yellow-400' : 'text-slate-500'}`}>lembrar</button>
-        <button onClick={() => handleCategoryFilter('#to-do')} className={`text-xm font-semibold ${categoryFilter === '#to-do' ? 'text-yellow-400' : 'text-slate-500'}`}>to-do</button>
+        <CategoryButton category='todas' toggleCategory={() => setCategoryFilter('')} active={categoryFilter === ''} />
+        <CategoryButton category='trabalho' toggleCategory={() => setCategoryFilter('#trabalho')} active={categoryFilter === '#trabalho'} />
+        <CategoryButton category='estudos' toggleCategory={() => setCategoryFilter('#estudos')} active={categoryFilter === '#estudos'} />
+        <CategoryButton category='anotações-rápidas' toggleCategory={() => setCategoryFilter('#anotações-rápidas')} active={categoryFilter === '#anotações-rápidas'} />
+        <CategoryButton category='lembrar' toggleCategory={() => setCategoryFilter('#lembrar')} active={categoryFilter === '#lembrar'} />
+        <CategoryButton category='to-do' toggleCategory={() => setCategoryFilter('#to-do')} active={categoryFilter === '#to-do'} />
       </div>
       <div className='grid grid-1 md:grid-2 lg:grid-cols-3 gap-6 auto-rows-[250px]'>
         <NewNoteCard onNoteCreated={(content, category) => onNoteCreated(content, category)} />
