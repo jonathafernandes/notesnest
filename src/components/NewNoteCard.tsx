@@ -113,13 +113,13 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
                             <span className='text-sm font-medium text-slate-300'>
                                 Adicionar nota
                             </span>
-                            <div className="grid grid-cols-2">
-                                <span className='text-sm text-slate-400'>
-                                    Escolha uma ou mais categorias:
-                                </span>
+                            <span className='text-sm text-slate-400'>
+                                Escolha uma ou mais categorias:
+                            </span>
+                            <div className="grid grid-cols-3">
                                 <Checkbox categories={categories} content='trabalho' toggleParam='#trabalho' checked='#trabalho' toggleCategory={toggleCategory} />
                                 <Checkbox categories={categories} content='estudos' toggleParam='#estudos' checked='#estudos' toggleCategory={toggleCategory} />
-                                <Checkbox categories={categories} content='anotações-rápidas' toggleParam='#anotações-rápidas' checked='#anotações-rápidas' toggleCategory={toggleCategory} />
+                                <Checkbox categories={categories} content='pessoal' toggleParam='#pessoal' checked='#pessoal' toggleCategory={toggleCategory} />
                                 <Checkbox categories={categories} content='lembrar' toggleParam='#lembrar' checked='#lembrar' toggleCategory={toggleCategory} />
                                 <Checkbox categories={categories} content='to-do' toggleParam='#to-do' checked='#to-do' toggleCategory={toggleCategory} />
                             </div>

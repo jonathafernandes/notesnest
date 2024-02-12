@@ -82,7 +82,7 @@ export default function App() {
         <CategoryButton category='todas' toggleCategory={() => setCategoryFilter('')} active={categoryFilter === ''} />
         <CategoryButton category='trabalho' toggleCategory={() => setCategoryFilter('#trabalho')} active={categoryFilter === '#trabalho'} />
         <CategoryButton category='estudos' toggleCategory={() => setCategoryFilter('#estudos')} active={categoryFilter === '#estudos'} />
-        <CategoryButton category='anotações-rápidas' toggleCategory={() => setCategoryFilter('#anotações-rápidas')} active={categoryFilter === '#anotações-rápidas'} />
+        <CategoryButton category='pessoal' toggleCategory={() => setCategoryFilter('#pessoal')} active={categoryFilter === '#pessoal'} />
         <CategoryButton category='lembrar' toggleCategory={() => setCategoryFilter('#lembrar')} active={categoryFilter === '#lembrar'} />
         <CategoryButton category='to-do' toggleCategory={() => setCategoryFilter('#to-do')} active={categoryFilter === '#to-do'} />
       </div>

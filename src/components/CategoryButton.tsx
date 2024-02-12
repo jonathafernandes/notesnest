@@ -8,7 +8,7 @@ export function CategoryButton({ category, toggleCategory, active }: CategoryBut
     return (
         <button
             onClick={() => toggleCategory(category)}
-            className={`text-xm text-slate-500 ${active ? 'text-yellow-400' : ''}`}
+            className={`text-xm text-slate-500 ${active ? 'text-yellow-400 font-semibold' : ''}`}
         >
             {category}
         </button>
