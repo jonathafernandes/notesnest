@@ -41,6 +41,16 @@ export default function App() {
     localStorage.setItem('notes', JSON.stringify(notesArray))
   }
 
+  function handleNoteUpdated(id: string, content: string) {
+    const updatedNotes = notes.map(note => {
+        if (note.id === id) {
+            return { ...note, content: content };
+        }
+        return note;
+    });
+    setNotes(updatedNotes);
+  }
+
   function onNoteDeleted(id: string) {
     const notesArray = notes.filter((note) => {
       return note.id !== id
@@ -90,7 +100,7 @@ export default function App() {
         <NewNoteCard onNoteCreated={(content, category) => onNoteCreated(content, category)} />
         {notesToDisplay.map((note) => {
           return (
-            <NoteCard key={note.id} note={note} onNoteDeleted={onNoteDeleted} />
+            <NoteCard key={note.id} note={note} onNoteDeleted={onNoteDeleted} onNoteUpdated={handleNoteUpdated} />
           )
         })}
       </div>
