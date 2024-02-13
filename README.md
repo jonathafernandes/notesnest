@@ -2,7 +2,7 @@ React + TypeScript + Vite + Tailwind
 ### Notes Nest
 
 Aplicação para gerenciamento de notas.
-Feito com _React, TypeScript, Tailwind, Radix UI, Vite_ e utilizada a _API SpeechRecognition_ para fazer **transcrição de áudio para texto**.
+Feito com _React, TypeScript, Tailwind, Radix UI, Vite_ e utilizada a _API SpeechRecognition_ para fazer **transcrição de áudio para texto**. Os dados são salvos no _Local Storage_.
 
 <img src='./public/screenshot-01.png' width="100%" />
 <img src='./public/screenshot-02.png' width="100%" />
