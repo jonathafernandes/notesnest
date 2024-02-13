@@ -49,6 +49,7 @@ export default function App() {
         return note;
     });
     setNotes(updatedNotes);
+    localStorage.setItem('notes', JSON.stringify(updatedNotes));
   }
 
   function onNoteDeleted(id: string) {

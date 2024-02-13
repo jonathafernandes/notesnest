@@ -49,6 +49,7 @@ export function NoteCard({ note, onNoteDeleted, onNoteUpdated }: NoteCardProps) 
         }
         
         onNoteUpdated(note.id, content);
+        
         localStorage.setItem(`note_${note.id}`, content);
         setEditing(false);
         
