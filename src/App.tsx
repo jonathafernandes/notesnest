@@ -1,5 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import { NotesPage } from './pages/NotesPage'
+import { CornellPage } from './pages/CornellPage'
+import { CornellNotePage } from './pages/CornellNotePage'
 import { BookOpen, Zap } from 'lucide-react'
 import logo from './assets/logoipsum-225.svg'
 
@@ -64,6 +66,8 @@ export default function App() {
     <Routes>
       <Route path='/' element={<HomePage />} />
       <Route path='/notes' element={<NotesPage />} />
+      <Route path='/cornell' element={<CornellPage />} />
+      <Route path='/cornell/:id' element={<CornellNotePage />} />
     </Routes>
   )
 }
