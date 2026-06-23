@@ -1,6 +1,6 @@
 ### Notes Nest
 
-<img src='./public/preview.png' width="100%" />
+<img src='./public/preview01.png' width="100%" />
 
 ---
 <br />
