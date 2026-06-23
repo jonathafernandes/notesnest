@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, ChevronsDownUp, ChevronsUpDown, Trash2 } from 'lucide-react'
+import * as Dialog from '@radix-ui/react-dialog'
+import { ArrowLeft, ChevronsDownUp, ChevronsUpDown, Trash2, X } from 'lucide-react'
 import { Toaster, toast } from 'sonner'
 import { Button } from '../components/NavigationButton'
 import {
@@ -100,9 +101,35 @@ export function CornellNotePage() {
                 </button>
             </div>
 
-            <div className='mt-6 flex gap-1'>
-                <img className='w-6' src={logo} alt='Notes Nest' />
-                <span className='text-xl font-semibold'>Notes Nest</span>
+            <div className='mt-6 flex flex-col gap-2'>
+                <div className='flex gap-1'>
+                    <img className='w-6' src={logo} alt='Notes Nest' />
+                    <span className='text-xl font-semibold'>Anotação Cornell</span>
+                </div>
+                <Dialog.Root>
+                    <Dialog.Trigger className='text-left text-sm text-slate-400 underline-offset-4 hover:text-slate-200 focus:outline-none focus:ring-2 focus:ring-yellow-400'>
+                        Saiba mais
+                    </Dialog.Trigger>
+                    <Dialog.Portal>
+                        <Dialog.Overlay className='inset-0 fixed bg-black/50' />
+                        <Dialog.Content className='fixed inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[560px] w-full max-h-[90vh] overflow-y-auto bg-slate-800 md:rounded-md border border-slate-700 p-5 outline-none'>
+                            <Dialog.Close className='absolute top-4 right-4 rounded-full bg-slate-700 p-2 text-slate-300 hover:bg-slate-600 hover:text-white'>
+                                <X className='h-4 w-4' />
+                            </Dialog.Close>
+                            <Dialog.Title className='text-lg font-semibold text-slate-100'>Como usar o método Cornell</Dialog.Title>
+                            <div className='mt-4 space-y-4 text-sm leading-6 text-slate-300'>
+                                <p>O método Cornell organiza sua revisão em três áreas:</p>
+                                <ul className='list-disc list-inside space-y-2'>
+                                    <li><strong>Pistas:</strong> registre palavras-chave, perguntas e lembretes que ajudam a revisar depois.</li>
+                                    <li><strong>Anotações:</strong> escreva os detalhes principais e ideias enquanto estuda ou assiste à aula.</li>
+                                    <li><strong>Resumo:</strong> sintetize os pontos mais importantes após a sessão para fixar o conteúdo.</li>
+                                </ul>
+                                <p>Use as pistas para guiar a leitura das anotações e o resumo para revisar rapidamente o conteúdo.</p>
+                                <p>Quando quiser, abra esse modal novamente para relembrar a estrutura do método.</p>
+                            </div>
+                        </Dialog.Content>
+                    </Dialog.Portal>
+                </Dialog.Root>
             </div>
 
             <input
