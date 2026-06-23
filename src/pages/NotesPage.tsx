@@ -83,7 +83,7 @@ export function NotesPage() {
             : filteredNotes
 
     return (
-        <div className='mx-auto max-w-6xl my-12 space-y-6 px-5'>
+        <div className='mx-auto max-w-7xl my-12 space-y-6 px-5'>
             <Button
                 onClick={() => navigate('/')}
                 icon={<ArrowLeft className='h-4 w-4' />}
